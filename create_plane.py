@@ -63,7 +63,7 @@ x1, y1 = -10, 85.3
 x2, y2 = -17.5, 90.2
 
 # Calculate point p3 perpendicular to line([x1,y1], [x2,y2])
-x3, y3, r3, angle3 = perpendicular(x1, y1, x2, y2)
+x3, y3, r13, angle3 = perpendicular(x1, y1, x2, y2)
 print(x3, y3)
 
 # Find point p4 opposite to p3
@@ -71,12 +71,14 @@ print(x3, y3)
 x4 = x1 - xadd and y4 = y1 - yadd
 where, xadd = rcos(theta) and yadd = rsin(theta)
 '''
-xadd = r3*math.cos(angle3)
-yadd = r3*math.sin(angle3)
+xadd = r13*math.cos(angle3)
+yadd = r13*math.sin(angle3)
 x4, y4 = x1-xadd, y1-yadd
 #plt.plot(x4, y4, 'r*')
 #plt.plot([x4, x1], [y4, y1])
 
+r14 = np.sqrt((x1-x4)**2 + (y1-y4)**2)
+#%%
 # 3D plotting
 
 fig = plt.figure()
@@ -84,14 +86,45 @@ ax = plt.axes(projection='3d')
 #x = [x1, x2, x3, x4]
 #y = [y1, y2, y3, y4]
 #z = [0, 0, 0, 0]
-x12, y12 = [x1,x2], [y1,y2]
-ax.plot3D(x12, y12)
-x13, y13 = [x1,x3], [y1,y3]
-ax.plot3D(x13, y13)
-x14, y14 = [x1,x4], [y1,y4]
-ax.plot3D(x14, y14)
+z1, z2, z3, z4 = 0, 0, 0, 0
+# Line12
+x12, y12, z12 = [x1,x2,], [y1,y2], [z1,z2]
+ax.plot3D(x12, y12, z12)
+# Line13
+x13, y13, z13 = [x1,x3], [y1,y3], [z1,z3]
+ax.plot3D(x13, y13, z13)
+# Line14
+x14, y14, z14 = [x1,x4], [y1,y4], [z1,z4]
+ax.plot3D(x14, y14, z14)
+# Line45
+x5, y5, z5 = x4, y4, z4+r13
+x45, y45, z45 = [x4,x5], [y4,y5], [z4, z5]
+ax.plot3D(x45, y45, z45)
+# Line46
+x6, y6, z6 = x4, y4, z4-r13
+x46, y46, z46 = [x4,x6], [y4,y6], [z4,z6]
+ax.plot3D(x46,y46,z46)
+# Line37
+x7, y7, z7 = x3, y3, z3+r13
+x37, y37, z37 = [x3,x7], [y3,y7], [z3, z7]
+ax.plot3D(x37, y37, z37)
+# Line38
+x8, y8, z8 = x3, y3, z3-r13
+x38, y38, z38 = [x3,x8], [y3,y8], [z3, z8]
+ax.plot3D(x38, y38, z38)
+# Line57
+x57, y57, z57 = [x5,x7], [y5,y7], [z5,z7]
+ax.plot3D(x57, y57, z57)
+# Line68
+x68, y68, z68 = [x6,x8], [y6,y8], [z6,z8]
+ax.plot3D(x68, y68, z68)
 
 plt.show()
+#%%
+# Calculate p5
+
+
+
 
 
 
