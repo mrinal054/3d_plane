@@ -7,7 +7,7 @@ perpendicular.
 Author: Mrinal Kanti Dhar
 
 Formula: 
-    I will indicate vector using ('). For instance, vector x will be x' 
+    I will indicate the vector terms using ('). For instance, vector x will be x' 
     Let, vector equation of a line is r' = (xs,ys,zs) + t(dx,dy,dz)
     Here,   xs,ys,zs are the coordinates of the starting point
             t = determines how far the point will be. You can set it to any value
@@ -77,7 +77,7 @@ def gen_random(ra,rb,rc):
     
 no_point = 100      # No. of points you want to generate  
 store_xyz = []      # Coordinates of the new perpendicular will be stored
-threshold = 60      # New coordinates will be stored if the length is less than threshold
+threshold = 30      # New coordinates will be stored if the length is less than threshold
  
 # Two coordinates of the given vector
 x1,y1,z1 = 104.22, 149.79, 0.00
@@ -87,7 +87,7 @@ x2,y2,z2 = 105.22, 150.79, 2.47
 dx,dy,dz = x2-x1, y2-y1, z2-z1
 vec1 = [dx,dy,dz]   # Travel along x,y,z axes
 
-ra, rb = -5,5       # lower limit, upper limit
+ra, rb = -30,30       # lower limit, upper limit
 m = gen_random(ra,rb,no_point) # Here m contains da and db. Now we will calculate dc.
 
 fig = plt.figure()
@@ -96,7 +96,7 @@ ax = plt.axes(projection='3d')
 x12, y12, z12 = [x1,x2], [y1,y2], [z1,z2]
 ax.plot3D(x12,y12,z12, 'r') # Plot the given line
 
-s = 1               # scaling factor
+s = 1              # scaling factor
 for da, db in m:
     # Calculate dc
     dc = third_cord(dx,dy,dz,da,db)
@@ -116,7 +116,7 @@ for da, db in m:
     
     # Store the coordinates if the length is <= threshold    
     if (length <= threshold):    
-        store_xyz.append([x3,y3,z3])    # Store new coordinates
+        store_xyz.append([round(x3,2),round(y3,2),round(z3,2)])    # Store new coordinates
     
     ax.plot3D(x13,y13,z13)    
     ax.set_xlabel('xlabel')
